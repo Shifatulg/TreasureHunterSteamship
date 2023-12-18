@@ -32,6 +32,12 @@ public class Hunter {
      *
      * @param modifier Amount to modify gold by.
      */
+
+    public void testMode(String[] items) {
+        gold = 100;
+        kit = items;
+
+    }
     public void changeGold(int modifier) {
         gold += modifier;
         if (gold < 0) {
