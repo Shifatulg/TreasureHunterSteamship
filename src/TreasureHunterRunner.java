@@ -3,5 +3,6 @@ public class TreasureHunterRunner {
         // steamships :)
         TreasureHunter game = new TreasureHunter();
         game.play();
+        System.out.println("Shifu here");
     }
 }
