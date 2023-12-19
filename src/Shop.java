@@ -13,6 +13,7 @@ public class Shop {
     private static final int MACHETE_COST = 6;
     private static final int HORSE_COST = 12;
     private static final int BOAT_COST = 20;
+    private static final int Boot_COST = 15;
 
     // static variables
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -87,7 +88,7 @@ public class Shop {
         str += "Machete: " + Colors.YELLOW+MACHETE_COST +Colors.RESET+" gold\n";
         str += "Horse: " + Colors.YELLOW+HORSE_COST + Colors.RESET+" gold\n";
         str += "Boat: " + Colors.YELLOW+BOAT_COST +Colors.RESET+" gold\n";
-
+        str += "Boot: " + Colors.YELLOW+Boot_COST +Colors.RESET+" gold\n";
         return str;
     }
 
@@ -151,6 +152,8 @@ public class Shop {
             return HORSE_COST;
         } else if (item.equals("boat")) {
             return BOAT_COST;
+        } else if (item.equals("boot")){
+            return Boot_COST;
         } else {
             return 0;
         }

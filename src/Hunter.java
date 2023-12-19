@@ -27,22 +27,22 @@ public class Hunter {
         return hunterName;
     }
 
+    public int getGold() {
+        return gold;
+    }
+
+    public void testMode(String[] items) {
+        gold = 100;
+        kit = items;
+    }
+
     /**
      * Updates the amount of gold the hunter has.
      *
      * @param modifier Amount to modify gold by.
      */
-
-    public void testMode(String[] items) {
-        gold = 100;
-        kit = items;
-
-    }
     public void changeGold(int modifier) {
         gold += modifier;
-        if (gold < 0) {
-            gold = 0;
-        }
     }
 
     /**

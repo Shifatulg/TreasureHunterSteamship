@@ -109,6 +109,9 @@ public class Town {
                 printMessage += Colors.RED+"That'll teach you to go lookin' fer trouble in MY town! Now pay up!"+Colors.RESET;
                 printMessage +=Colors.RED+ "\nYou lost the brawl and pay " +Colors.RESET+Colors.YELLOW+ goldDiff +Colors.RESET+Colors.RED+ " gold."+Colors.RESET;
                 hunter.changeGold(-goldDiff);
+                if (hunter.getGold() < 0) {
+                    TreasureHunter.lose();
+                }
             }
         }
     }
@@ -124,15 +127,18 @@ public class Town {
      */
     private Terrain getNewTerrain() {
         double rnd = Math.random();
-        if (rnd < .2) {
+        if (rnd < 1/6) {
             return new Terrain("Mountains", "Rope");
-        } else if (rnd < .4) {
+        } else if (rnd < 2/6) {
             return new Terrain("Ocean", "Boat");
-        } else if (rnd < .6) {
+        } else if (rnd < 3/6) {
             return new Terrain("Plains", "Horse");
-        } else if (rnd < .8) {
+        } else if (rnd <4/6) {
             return new Terrain("Desert", "Water");
-        } else {
+        } else if (rnd <5/6) {
+            return new Terrain("Marsh", "Boot");
+        }
+        else {
             return new Terrain("Jungle", "Machete");
         }
     }
