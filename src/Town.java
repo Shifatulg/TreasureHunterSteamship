@@ -5,10 +5,13 @@
  */
 
 public class Town {
+    private static String[] treasures = {"crown", "gem", "trophy", "dust"};
     // instance variables
     private Hunter hunter;
     private Shop shop;
     private Terrain terrain;
+
+    private String townTreasure;
     private String printMessage;
     private boolean toughTown;
 
@@ -30,12 +33,24 @@ public class Town {
 
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
+
+        // gets a random treasure from the static array
+        townTreasure = treasures[(int) (Math.random() * 4)];
     }
 
     public String getLatestNews() {
         return printMessage;
     }
 
+    public void getTownTreasure() {
+        if (townTreasure == null) {
+            System.out.println("You have already searched this town");
+        } else {
+            System.out.println("You have found a " + townTreasure);
+            hunter.treasureFound(townTreasure);
+            townTreasure = null;
+        }
+    }
     /**
      * Assigns an object to the Hunter in town.
      *
@@ -127,15 +142,15 @@ public class Town {
      */
     private Terrain getNewTerrain() {
         double rnd = Math.random();
-        if (rnd < 1/6) {
+        if (rnd < (double) 1/6) {
             return new Terrain("Mountains", "Rope");
-        } else if (rnd < 2/6) {
+        } else if (rnd < (double) 2/6) {
             return new Terrain("Ocean", "Boat");
-        } else if (rnd < 3/6) {
+        } else if (rnd < (double) 3/6) {
             return new Terrain("Plains", "Horse");
-        } else if (rnd <4/6) {
+        } else if (rnd < (double) 4/6) {
             return new Terrain("Desert", "Water");
-        } else if (rnd <5/6) {
+        } else if (rnd < (double) 5/6) {
             return new Terrain("Marsh", "Boot");
         }
         else {
