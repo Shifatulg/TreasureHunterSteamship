@@ -5,10 +5,13 @@
  */
 
 public class Town {
+    private static String[] treasures = {"crown", "gem", "trophy", "dust"};
     // instance variables
     private Hunter hunter;
     private Shop shop;
     private Terrain terrain;
+
+    private String townTreasure;
     private String printMessage;
     private boolean toughTown;
 
@@ -30,12 +33,24 @@ public class Town {
 
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
+
+        // gets a random treasure from the static array
+        townTreasure = treasures[(int) (Math.random() * 4)];
     }
 
     public String getLatestNews() {
         return printMessage;
     }
 
+    public void getTownTreasure() {
+        if (townTreasure == null) {
+            System.out.println("You have already searched this town");
+        } else {
+            System.out.println("You have found a " + townTreasure);
+            hunter.treasureFound(townTreasure);
+            townTreasure = null;
+        }
+    }
     /**
      * Assigns an object to the Hunter in town.
      *
