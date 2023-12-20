@@ -16,7 +16,9 @@ public class TreasureHunter {
     private Town currentTown;
     private Hunter hunter;
     private boolean hardMode;
+    private  int timeDigGold =1;
     private static boolean lose = false;
+    private static boolean win = false;
 
     /**
      * Constructs the Treasure Hunter game.
@@ -40,6 +42,10 @@ public class TreasureHunter {
     public static void lose() {
         lose = true;
     }
+    public static void win() {
+        win = true;
+    }
+
 
     /**
      * Creates a hunter object at the beginning of the game and populates the class member variable with it.
@@ -49,12 +55,12 @@ public class TreasureHunter {
         System.out.println("Going hunting for the big treasure, eh?");
         System.out.print("What's your name, Hunter? ");
         String name = SCANNER.nextLine().toLowerCase();
-        // Hunter objecto
+        // Hunter object
         hunter = new Hunter(name, 10);
         System.out.print("Hard mode? (y/n): ");
         String hard = SCANNER.nextLine().toLowerCase();
         if (hard.equals("test")) {
-            String[] items = {"water", "horse", "boat", "machete", "rope"};
+            String[] items = {"water", "horse", "boat", "machete", "rope","boot","shovel"};
             hunter.testMode(items);
         }
         else if (hard.equals("y")) {
@@ -111,8 +117,8 @@ public class TreasureHunter {
             System.out.println("(S)ell something at the shop.");
             System.out.println("(M)ove on to a different town.");
             System.out.println("(L)ook for trouble!");
-            System.out.println("(H)unt for treasure!");
             System.out.println("Give up the hunt and e(X)it.");
+            System.out.println("(D)ig for gold!");
             System.out.println();
             System.out.print("What's your next move? ");
             choice = SCANNER.nextLine().toLowerCase();
@@ -136,15 +142,33 @@ public class TreasureHunter {
             if (currentTown.leaveTown()) {
                 // This town is going away so print its news ahead of time.
                 System.out.println(currentTown.getLatestNews());
+                if (timeDigGold==0){
+                    timeDigGold++;
+                }
                 enterTown();
             }
         } else if (choice.equals("l")) {
             currentTown.lookForTrouble();
-        } else if (choice.equals("h")) {
-            currentTown.getTownTreasure();
-        } else if (choice.equals("x")) {
+        } else if (choice.equals("d")){
+            if(timeDigGold==0){
+                System.out.println("You already dug for gold in this town.");
+            } else if(Shop.HaveShovel){
+                double rnd = Math.random();
+                timeDigGold--;
+                if(rnd>.5){
+                    System.out.println("You dug but only found dirt");
+                    int x = (int)(Math.random()*20)+1;
+                    System.out.println("You dug up " + x +" gold!");
+                    hunter.changeGold(x);
+                }else{
+                    System.out.println("You dug but only found dirt");
+                }
+                }else{
+                System.out.println("You can't dig for gold without a shovel");
+            }
+        }else if (choice.equals("x")) {
             System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
-        }  else {
+        } else {
             System.out.println("Yikes! That's an invalid option! Try again.");
         }
     }
