@@ -22,7 +22,7 @@ public class Hunter {
         this.hunterName = hunterName;
         kit = new String[5]; // only 5 possible items can be stored in kit
         gold = startingGold;
-        treasuresAcquired = new String[4];
+        treasuresAcquired = new String[3];
     }
 
     //Accessors
@@ -164,13 +164,27 @@ public class Hunter {
         return printableKit;
     }
 
+    public String getObtainedTreasures() {
+        String printableTreasures = "";
+        String space = " ";
+
+        for (String item : treasuresAcquired) {
+            if (item != null) {
+                printableTreasures += item + space;
+            }
+        }
+        return printableTreasures;
+    }
     /**
      * @return A string representation of the hunter.
      */
     public String toString() {
-        String str = hunterName + " has " + Colors.YELLOW+gold + Colors.RESET+" gold";
+        String str = hunterName + " has " + Colors.YELLOW+gold + Colors.RESET + " gold";
         if (!kitIsEmpty()) {
             str += " and " + getInventory();
+        }
+        if (!treasureIsEmpty()) {
+            str += "\n treasures: " + getObtainedTreasures();
         }
         return str;
     }
@@ -206,6 +220,14 @@ public class Hunter {
         return true;
     }
 
+    private boolean treasureIsEmpty() {
+        for (String string : treasuresAcquired) {
+            if (string != null) {
+                return false;
+            }
+        }
+        return true;
+    }
     /**
      * Finds the first index where there is a null value.
      *
