@@ -17,6 +17,7 @@ public class TreasureHunter {
     private Hunter hunter;
     private boolean hardMode;
     private static boolean lose = false;
+    private static boolean win = false;
 
     /**
      * Constructs the Treasure Hunter game.
@@ -40,6 +41,10 @@ public class TreasureHunter {
     public static void lose() {
         lose = true;
     }
+    public static void win() {
+        win = true;
+    }
+
 
     /**
      * Creates a hunter object at the beginning of the game and populates the class member variable with it.
@@ -49,7 +54,7 @@ public class TreasureHunter {
         System.out.println("Going hunting for the big treasure, eh?");
         System.out.print("What's your name, Hunter? ");
         String name = SCANNER.nextLine().toLowerCase();
-        // Hunter objecto
+        // Hunter object
         hunter = new Hunter(name, 10);
         System.out.print("Hard mode? (y/n): ");
         String hard = SCANNER.nextLine().toLowerCase();
