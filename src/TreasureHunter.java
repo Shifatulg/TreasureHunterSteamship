@@ -17,10 +17,9 @@ public class TreasureHunter {
     private Hunter hunter;
     private boolean hardMode;
     private static boolean easyMode;
-    private static boolean easyGoldAdded;
     private  int timeDigGold =1;
     private static boolean lose = false;
-    private static boolean win = false;
+    private boolean easyGoldAdded = false;
 
     /**
      * Constructs the Treasure Hunter game.
@@ -43,9 +42,6 @@ public class TreasureHunter {
 
     public static void lose() {
         lose = true;
-    }
-    public static void win() {
-        win = true;
     }
 
     public static boolean isEasyMode() {
@@ -111,6 +107,7 @@ public class TreasureHunter {
         currentTown.hunterArrives(hunter);
         if (easyMode && !easyGoldAdded) {
             hunter.changeGold(10);
+            easyGoldAdded = true;
         }
     }
 
