@@ -160,6 +160,8 @@ public class TreasureHunter {
             }
         } else if (choice.equals("l")) {
             currentTown.lookForTrouble();
+        } else if (choice.equals("h")) {
+              currentTown.getTownTreasure();
         } else if (choice.equals("d")){
             if(timeDigGold==0){
                 System.out.println("You already dug for gold in this town.");
