@@ -152,11 +152,10 @@ public class TreasureHunter {
         } else if (choice.equals("d")){
             if(timeDigGold==0){
                 System.out.println("You already dug for gold in this town.");
-            } else if(Shop.HaveShovel){
+            } else if(hunter.hasItemInKit("shovel")){
                 double rnd = Math.random();
                 timeDigGold--;
                 if(rnd>.5){
-                    System.out.println("You dug but only found dirt");
                     int x = (int)(Math.random()*20)+1;
                     System.out.println("You dug up " + x +" gold!");
                     hunter.changeGold(x);
