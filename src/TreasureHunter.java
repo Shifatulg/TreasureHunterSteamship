@@ -16,9 +16,10 @@ public class TreasureHunter {
     private Town currentTown;
     private Hunter hunter;
     private boolean hardMode;
+    private static boolean easyMode;
     private  int timeDigGold =1;
     private static boolean lose = false;
-    private static boolean win = false;
+    private boolean easyGoldAdded = false;
 
     /**
      * Constructs the Treasure Hunter game.
@@ -42,10 +43,10 @@ public class TreasureHunter {
     public static void lose() {
         lose = true;
     }
-    public static void win() {
-        win = true;
-    }
 
+    public static boolean isEasyMode() {
+        return easyMode;
+    }
 
     /**
      * Creates a hunter object at the beginning of the game and populates the class member variable with it.
@@ -57,14 +58,16 @@ public class TreasureHunter {
         String name = SCANNER.nextLine().toLowerCase();
         // Hunter object
         hunter = new Hunter(name, 10);
-        System.out.print("Hard mode? (y/n): ");
+        System.out.print("Easy or hard mode?(n for normal): ");
         String hard = SCANNER.nextLine().toLowerCase();
         if (hard.equals("test")) {
-            String[] items = {"water", "horse", "boat", "machete", "rope","boot","shovel"};
+            String[] items = {"water", "horse", "boat", "machete", "rope"};
             hunter.testMode(items);
         }
-        else if (hard.equals("y")) {
+        else if (hard.equals("hard") || hard.equals("h")) {
             hardMode = true;
+        } else if (hard.equals("easy") || hard.equals("e")) {
+            easyMode = true;
         }
     }
 
@@ -80,6 +83,9 @@ public class TreasureHunter {
 
             // and the town is "tougher"
             toughness = 0.75;
+        } else if (easyMode) {
+            markdown = 1;
+            toughness = 0.2;
         }
 
         // note that we don't need to access the Shop object
@@ -97,6 +103,10 @@ public class TreasureHunter {
         // constructor for Town, but this illustrates another way to associate
         // an object with an object of a different class
         currentTown.hunterArrives(hunter);
+        if (easyMode && !easyGoldAdded) {
+            hunter.changeGold(10);
+            easyGoldAdded = true;
+        }
     }
 
     /**
@@ -117,6 +127,7 @@ public class TreasureHunter {
             System.out.println("(S)ell something at the shop.");
             System.out.println("(M)ove on to a different town.");
             System.out.println("(L)ook for trouble!");
+            System.out.println("(H)unt for treasure!");
             System.out.println("Give up the hunt and e(X)it.");
             System.out.println("(D)ig for gold!");
             System.out.println();

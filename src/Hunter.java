@@ -22,7 +22,7 @@ public class Hunter {
         this.hunterName = hunterName;
         kit = new String[5]; // only 5 possible items can be stored in kit
         gold = startingGold;
-        treasuresAcquired = new String[3];
+        treasuresAcquired = new String[]{null, null, null, null};
     }
 
     //Accessors
@@ -67,8 +67,12 @@ public class Hunter {
 
     public Boolean treasureFound(String treasure) {
         for (int i = 0; i < treasuresAcquired.length; i++) {
-            if (!treasure.equals("dust") && !treasure.equals(treasuresAcquired[i])) {
+            if (treasuresAcquired[i] != null && treasuresAcquired[i].equals(treasure)) {
+                break;
+            }
+            if (!treasure.equals("dust") && !treasure.equals(treasuresAcquired[i]) && treasuresAcquired[i] == null) {
                 System.out.println("You put the " + treasure + " in your bag");
+                treasuresAcquired[i] = treasure;
                 return false;
             }
         }
