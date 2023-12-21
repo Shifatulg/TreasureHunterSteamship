@@ -15,7 +15,6 @@ public class Shop {
     private static final int BOAT_COST = 20;
     private static final int Boot_COST = 15;
     private static final int Shovel_COST = 8;
-    public static boolean HaveShovel = false;
 
     // static variables
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -103,11 +102,8 @@ public class Shop {
     public void buyItem(String item) {
         int costOfItem = checkMarketPrice(item, true);
         if (customer.buyItem(item, costOfItem)) {
-            System.out.println("Ye' got yerself a " + Colors.PURPLE+item + Colors.RESET+ ". Come again soon.");
-        } else if (customer.buyItem(item, costOfItem)&& item.equals("Shovel")) {
-            System.out.println("Ye' got yerself a " + Colors.PURPLE+item + Colors.RESET+ ". Come again soon.");
-            HaveShovel = true;
-        }
+              System.out.println("Ye' got yerself a " + Colors.PURPLE+item + Colors.RESET+ ". Come again soon.");
+          }
         else {
             System.out.println("Hmm, either you don't have enough gold or you've already got one of those!");
         }

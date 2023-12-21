@@ -161,7 +161,7 @@ public class Hunter {
 
         for (String item : kit) {
             if (item != null) {
-                printableKit += item + space;
+                printableKit += Colors.PURPLE+item+Colors.RESET + space;
             }
         }
 
