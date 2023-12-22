@@ -116,7 +116,11 @@ public class Town {
         } else {
             printMessage = Colors.RED+"You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n"+Colors.RESET;
             int goldDiff = (int) (Math.random() * 10) + 1;
-            if (Math.random() > noTroubleChance) {
+            if (TreasureHunter.isSamuraiMode() && hunter.hasSword()) {
+                printMessage += "The brawler whimpers in the sight of your mighty sword";
+                printMessage += "\nYou won the brawl";
+                hunter.changeGold(goldDiff);
+            } else if (Math.random() > noTroubleChance) {
                 printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";
                 printMessage += "\nYou won the brawl and receive " + Colors.YELLOW+goldDiff +Colors.RESET+ " gold.";
                 hunter.changeGold(goldDiff);
@@ -141,17 +145,19 @@ public class Town {
      * @return A Terrain object.
      */
     private Terrain getNewTerrain() {
-        double rnd = Math.random();
-        if (rnd < .2) {
+        int rnd = (int) (Math.random() * 6)  + 1;
+        if (rnd == 1) {
             return new Terrain("Mountains", "Rope");
-        } else if (rnd < .4) {
+        } else if (rnd == 2) {
             return new Terrain("Ocean", "Boat");
-        } else if (rnd < .6) {
+        } else if (rnd == 3) {
             return new Terrain("Plains", "Horse");
-        } else if (rnd < .8) {
+        } else if (rnd == 4) {
             return new Terrain("Desert", "Water");
-        } else {
+        } else if (rnd == 5) {
             return new Terrain("Jungle", "Machete");
+        } else {
+            return new Terrain("Marsh", "Boot");
         }
     }
 

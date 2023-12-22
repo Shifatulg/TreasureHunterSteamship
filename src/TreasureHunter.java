@@ -16,7 +16,8 @@ public class TreasureHunter {
     private Town currentTown;
     private Hunter hunter;
     private boolean hardMode;
-    private static boolean easyMode;
+    private static boolean easyMode = false;
+    private static boolean samuraiMode = false;
     private  int timeDigGold =1;
     private static boolean lose = false;
     private static boolean win = false;
@@ -41,6 +42,9 @@ public class TreasureHunter {
         showMenu();
     }
 
+    public static boolean isSamuraiMode() {
+        return samuraiMode;
+    }
     public static void lose() {
         lose = true;
     }
@@ -65,13 +69,15 @@ public class TreasureHunter {
         System.out.print("Easy or hard mode?(n for normal): ");
         String hard = SCANNER.nextLine().toLowerCase();
         if (hard.equals("test")) {
-            String[] items = {"water", "horse", "boat", "machete", "rope"};
+            String[] items = {"water", "horse", "boat", "machete", "rope", "boots", "shovel"};
             hunter.testMode(items);
         }
         else if (hard.equals("hard") || hard.equals("h")) {
             hardMode = true;
         } else if (hard.equals("easy") || hard.equals("e")) {
             easyMode = true;
+        } else if (hard.equals("s")) {
+            samuraiMode = true;
         }
     }
 

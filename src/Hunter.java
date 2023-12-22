@@ -20,11 +20,19 @@ public class Hunter {
      */
     public Hunter(String hunterName, int startingGold) {
         this.hunterName = hunterName;
-        kit = new String[5]; // only 5 possible items can be stored in kit
+        kit = new String[8]; // only 5 possible items can be stored in kit
         gold = startingGold;
         treasuresAcquired = new String[]{null, null, null, null};
     }
 
+    public boolean hasSword() {
+        for (String string: kit) {
+            if (string != null && string.equals("sword")) {
+                return true;
+            }
+        }
+        return false;
+    }
     //Accessors
     public String getHunterName() {
         return hunterName;
@@ -56,7 +64,7 @@ public class Hunter {
      * @return true if the item is successfully bought.
      */
     public boolean buyItem(String item, int costOfItem) {
-        if (costOfItem == 0 || gold < costOfItem || hasItemInKit(item)) {
+        if (hasSword() || costOfItem < 0 || gold < costOfItem || hasItemInKit(item)) {
             return false;
         }
 
@@ -132,7 +140,7 @@ public class Hunter {
      * @param item The item to be added to the kit.
      * @return true if the item is not in the kit and has been added.
      */
-    private boolean addItem(String item) {
+    boolean addItem(String item) {
         if (!hasItemInKit(item)) {
             int idx = emptyPositionInKit();
             kit[idx] = item;
