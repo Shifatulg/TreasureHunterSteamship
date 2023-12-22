@@ -198,7 +198,9 @@ public class Hunter {
             str += " and " + getInventory();
         }
         if (!treasureIsEmpty()) {
-            str += "\n treasures: " + getObtainedTreasures();
+            str += "\ntreasures: " + Colors.PURPLE+getObtainedTreasures()+Colors.RESET;
+        } else {
+            str += "\ntreasures: none";
         }
         return str;
     }
