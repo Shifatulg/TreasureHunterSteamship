@@ -19,6 +19,7 @@ public class TreasureHunter {
     private static boolean easyMode;
     private  int timeDigGold =1;
     private static boolean lose = false;
+    private static boolean win = false;
     private boolean easyGoldAdded = false;
 
     /**
@@ -42,6 +43,9 @@ public class TreasureHunter {
 
     public static void lose() {
         lose = true;
+    }
+    public static void win() {
+        win = true;
     }
 
     public static boolean isEasyMode() {
@@ -117,7 +121,7 @@ public class TreasureHunter {
     private void showMenu() {
         String choice = "";
 
-        while (!choice.equals("x") && !lose) {
+        while (!choice.equals("x") && !lose && !win) {
             System.out.println();
             System.out.println(currentTown.getLatestNews());
             System.out.println("***");
@@ -137,7 +141,9 @@ public class TreasureHunter {
             if (lose) {
                 System.out.println("You went into " + Colors.RED + "DEBT" + Colors.RESET);
                 System.out.println(Colors.RED + "YOU LOSE" + Colors.RESET);
-
+            } else if (win) {
+                System.out.println("Congrats, you collected all the treasures");
+                System.out.println("You " + Colors.YELLOW + "WIN!" + Colors.RESET);
             }
         }
     }
