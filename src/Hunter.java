@@ -73,6 +73,16 @@ public class Hunter {
             if (!treasure.equals("dust") && !treasure.equals(treasuresAcquired[i]) && treasuresAcquired[i] == null) {
                 System.out.println("You put the " + treasure + " in your bag");
                 treasuresAcquired[i] = treasure;
+                int counter = 0;
+                for (String acquiredTreasure : treasuresAcquired) {
+                    if (acquiredTreasure != null) {
+                        counter++;
+                    }
+                }
+                if (counter == 3) {
+                    TreasureHunter.win();
+                }
+
                 return false;
             }
         }
