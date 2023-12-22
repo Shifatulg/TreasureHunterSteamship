@@ -161,7 +161,7 @@ public class TreasureHunter {
         } else if (choice.equals("l")) {
             currentTown.lookForTrouble();
         } else if (choice.equals("h")) {
-              currentTown.getTownTreasure();
+            currentTown.getTownTreasure();
         } else if (choice.equals("d")){
             if(timeDigGold==0){
                 System.out.println("You already dug for gold in this town.");
@@ -175,7 +175,7 @@ public class TreasureHunter {
                 }else{
                     System.out.println("You dug but only found dirt");
                 }
-                }else{
+            }else{
                 System.out.println("You can't dig for gold without a shovel");
             }
         }else if (choice.equals("x")) {
