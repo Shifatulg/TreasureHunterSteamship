@@ -96,6 +96,8 @@ public class Town {
      */
     public void enterShop(String choice) {
         shop.enter(hunter, choice);
+        printMessage = "";
+        printMessage = "You have left the shop";
     }
 
     /**
